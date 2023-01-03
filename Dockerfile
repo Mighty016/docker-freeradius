@@ -27,9 +27,10 @@ ENV RAD_CLIENTS=10.0.0.0/24
 ENV RAD_DEBUG=no
 
 ADD --chown=root:radius ./etc/raddb/ /etc/raddb
-RUN /etc/raddb/certs/bootstrap && \
-    chown -R root:radius /etc/raddb/certs && \
-    chmod 640 /etc/raddb/certs/*.pem
+RUN /etc/raddb/certs/bootstrap
+
+RUN chown -R root:radius /etc/raddb/certs
+RUN chmod 640 /etc/raddb/certs/*.pem
 
 
 ADD ./scripts/start.sh /start.sh
